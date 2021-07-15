@@ -18,15 +18,15 @@ open311 = "http://ontology.eil.utoronto.ca/open311.owl#"  #open311 IRI
 Model_dict={'@graph':[],
 			'@context:':{
 			"rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-	        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-	        "owl": "http://www.w3.org/2002/07/owl#",
-	        "iudx": "https://voc.iudx.org.in/",
-	        "skos": "http://www.w3.org/2004/02/skos/core#",
-        	"schema": "http://schema.org/",
-        	"geojson": "https://purl.org/geojson/vocab#",
-        	"Fiware": "https://uri.fiware.org/ns/data-models#",
-        	"GTFS" : "http://vocab.gtfs.org/gtfs.ttl#",
-        	"open311" :"http://ontology.eil.utoronto.ca/open311.owl#"}
+			"rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+			"owl": "http://www.w3.org/2002/07/owl#",
+			"iudx": "https://voc.iudx.org.in/",
+			"skos": "http://www.w3.org/2004/02/skos/core#",
+			"schema": "http://schema.org/",
+			"geojson": "https://purl.org/geojson/vocab#",
+			"Fiware": "https://uri.fiware.org/ns/data-models#",
+			"GTFS" : "http://vocab.gtfs.org/gtfs.ttl#",
+			"open311" :"http://ontology.eil.utoronto.ca/open311.owl#"}
 	        }
 
 #Below lists and loops iterate over all classes
@@ -149,4 +149,4 @@ for iudx_properties in Properties_folders:
 
 
 with open("Model.jsonld", "w") as outfile:
-    json.dump(Model_dict, outfile,indent=4, sort_keys=True)
+	json.dump(Model_dict, outfile,indent=4, sort_keys=True)
