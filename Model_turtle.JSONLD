@@ -1,0 +1,3140 @@
+@prefix Fiware:  <https://uri.fiware.org/ns/data-models#> .
+@prefix GTFS:    <http://vocab.gtfs.org/gtfs.ttl#> .
+@prefix geojson: <https://purl.org/geojson/vocab#> .
+@prefix iudx:    <https://voc.iudx.org.in/> .
+@prefix open311: <http://ontology.eil.utoronto.ca/open311.owl#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:  <http://schema.org/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+iudx:trip_id  rdf:type       iudx:TextProperty ;
+        rdfs:comment         "Trip ID/Trip name alloted to the bus corresponding to this observation, in consideration to the time of the day and the direction of the trip on the given routeId. SameAs: 'trip_id' field from GTFS Realtime message-TripDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip_id" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem , iudx:TripDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:ResourceServer  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the Resource Server entry in the IUDX catalogue." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "ResourceServer" ;
+        rdfs:subClassOf   iudx:IUDXEntity .
+
+iudx:instValue  rdf:type     rdf:QuantitativeProperty ;
+        rdfs:comment         "Describes the instantaneous value (associated with the current timestamp) of a time varying quantity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "instValue" ;
+        iudx:domainIncludes  iudx:TimeSeriesAggregation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:last_stop_id  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Stop ID/Stop name of the previous bus stop corresponding to the bus in this observation. SameAs: 'stop_id' field from GTFS Realtime message-VehiclePosition (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "last_stop_id" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:originStopName  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "The name of the origin bus stop corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "originStopName" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:bap  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Benzo[a]pyrene (BaP). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "bap" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:currentLevel  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Current flooding level indicated by the sensing station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "currentLevel" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:airTemperature  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of air temperature. Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "airTemperature" ;
+        skos:exactMatch      Fiware:temperature ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:brandName  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Name of the brand associated with an entity, e.g., sensor, device etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "brandName" ;
+        skos:exactMatch      Fiware:brandName ;
+        iudx:domainIncludes  iudx:ModelInfo ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:travelDistance  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The distance between the orgin bus stop and the destination bus stop corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "travelDistance" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:precipitation  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed precipitation/rainfall level over a given duration." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "precipitation" ;
+        skos:exactMatch      Fiware:precipitation ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:deviceInfo  rdf:type    iudx:StructuredProperty ;
+        rdfs:comment         "Information about the device associated with the observations." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceInfo" ;
+        iudx:domainIncludes  iudx:EnvFlood , iudx:WiFiHostspot , iudx:WaterDistributionNetwork , iudx:EnvAQM , iudx:TransitManagement , iudx:Streetlight , iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:Device .
+
+iudx:precipitationForecast
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Forecasted rainfall over a certain duration in future." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "precipitationForecast" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stop_code  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "This field contains short text or a number that uniquely identifies the stop for passengers. Can be same as stop_id if it is for public. SameAs: 'stop_code' field from GTFS Static Field definitions-stops.txt (https://developers.google.com/transit/gtfs/reference#stopstxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_code" ;
+        skos:exactMatch      GTFS:stop_code ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:route_id  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Route ID assigned to the route on which the bus/vehicle corresponding to the bus in this observation is currently plying on. SameAs: 'route_id' field from GTFS Realtime message-TripDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_id" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem , iudx:TripDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:tankLength  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Length of the Cuboid shaped water storage tank." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankLength" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:last_tracked_time
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "Gives the time at which the vehicle was last tracked." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "last_tracked_time" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:subCategoryCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unique identifier for the sub-category corresponding to the issue reported." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "subCategoryCode" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:ulbName  rdf:type       iudx:TextProperty ;
+        rdfs:comment         "Name of the Urban Local Body corresponding to this observation." , "Name of the Urban Local Body from which the issue, report or feedback corresponding to this observation was raised or submitted." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ulbName" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc , iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:stop_sequence_detail
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Describes the stop sequence for a trip in the designated route made by the public transit vehicle. SameAs: 'stop_sequence' field from GTFS Static Field definitions-stop_times.txt (https://developers.google.com/transit/gtfs/reference#stop_timestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_sequence_detail" ;
+        skos:exactMatch      GTFS:stop_sequence ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:Sequence .
+
+iudx:relativeHumidityForecast
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Forecasted relative humidity (water vapour in air) over a certain duration in future." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "relativeHumidityForecast" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:DataDescriptor  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the Data Descriptor Object embedded in another IUDX entity. It provides meta-information about various data fields associated with a resource." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "DataDescriptor" ;
+        rdfs:subClassOf   iudx:StructuredValue .
+
+iudx:Thing  rdf:type      owl:Class ;
+        rdfs:comment      "Most generic IUDX object." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Thing" ;
+        skos:exactMatch   schema:Thing .
+
+iudx:NumericArray  rdf:type  owl:Class ;
+        rdfs:comment      "Data type: Array of numbers, for representing numeric values (Decimals, Integers, etc)" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "NumericArray" .
+
+iudx:agency_timezone  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Timezone field contains the timezone where the transit agency is located. SameAs: 'agency_timezone' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_timezone" ;
+        skos:exactMatch      GTFS:agency_timezone ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Camera  rdf:type     owl:Class ;
+        rdfs:comment      "A Data Model for camera installations in a city." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Camera" ;
+        rdfs:subClassOf   iudx:VideoSystems .
+
+iudx:TripDetails  rdf:type  owl:Class ;
+        rdfs:comment      "A descriptor of realtime update on the schedule of a vehicle along a trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TripDetails" .
+
+iudx:route_desc  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Description of the route. This can include the entire route details including to and from destination and timing information in a text description form. SameAs: 'route_desc' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_desc" ;
+        skos:exactMatch      GTFS:route_desc ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:dangerLevel  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Reference danger level threshold value set for the sensing station corresponding to this observation. Flood level status is marked danger if the current level crosses the danger level threshold value." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dangerLevel" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:no3  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Nitrate concentration measured in waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "no3" ;
+        skos:exactMatch      Fiware:no3 ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:Environment  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to the environment domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Environment" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:accessObjectType
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Type of access object. ENUM: [OpenAPI, AsyncAPI]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "accessObjectType" ;
+        iudx:domainIncludes  iudx:AccessObjectInfoValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:tankDiameter  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Diameter of Cylindrical or Spherical water storage tanks." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankDiameter" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:feederID  rdf:type      iudx:Relationship ;
+        rdfs:comment         "Unique ID of the streetlight feeder panel associated with the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "feederID" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:tankName  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Name of the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankName" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:stop_headsign  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "This field contains the text that appears on a sign that identifies the trip’s destination to passengers. SameAs: 'stop_headsign' field from GTFS Static Field definitions-stop_times.txt (https://developers.google.com/transit/gtfs/reference#stop_timestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_headsign" ;
+        skos:exactMatch      GTFS:stop_headsign ;
+        iudx:domainIncludes  iudx:TransitManagement , iudx:TripDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:speed  rdf:type         iudx:QuantitativeProperty ;
+        rdfs:comment         "Gives the Speed  of the vehicle.SameAs 'speed' field from GTFS Realtime message-Position(https://developers.google.com/transit/gtfs-realtime/reference#message-position)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "speed" ;
+        skos:exactMatch      GTFS:speed ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:subCategory  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "The sub-category name corresponding to the issue that has been reported." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "subCategory" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:aqiMajorPollutant
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Major pollutant in the Air Quality Index (AQI)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "aqiMajorPollutant" ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:EnvFlood  rdf:type   owl:Class ;
+        rdfs:comment      "Flood Sensor Data Model intended to represent the level of flooding w.r.t water flow/level at a certain water mass(river, lake,etc.)." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "EnvFlood" ;
+        rdfs:subClassOf   iudx:Environment .
+
+iudx:isPartOf  rdf:type      rdf:Property ;
+        rdfs:comment         "Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "isPartOf" ;
+        iudx:domainIncludes  schema:CreativeWork ;
+        iudx:rangeIncludes   schema:URL , schema:CreativeWork .
+
+iudx:manufacturerName
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Name of the manufacturer associated with an entity, e.g., sensor, device etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "manufacturerName" ;
+        skos:exactMatch      Fiware:manufacturerName ;
+        iudx:domainIncludes  iudx:ModelInfo ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:tss  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Total suspended solids concentration measured in a waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tss" ;
+        skos:exactMatch      Fiware:tss ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:treatmentPlantCapacity
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Handling capacity of the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "treatmentPlantCapacity" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:exitAreaCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Area code of the passenger alighting stop (used by the fare collection agency). For example, whether the stop is city-bus-service stop or brts stop or other service type stop etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "exitAreaCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:totalReactivePower
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Total reactive power for all phases" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalReactivePower" ;
+        skos:exactMatch      Fiware:totalReactivePower ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:binCapacity  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Total capacity in terms of the volume of waste the bin can hold." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binCapacity" ;
+        skos:exactMatch      Fiware:cargoVolume ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:totalEmployee  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Number of the employees in the organization" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalEmployee" ;
+        skos:exactMatch      schema:numberOfEmployees ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:bod  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Biological Oxygen Demand concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "bod" ;
+        skos:exactMatch      Fiware:bod ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:cardID  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "Unique ticket ID of the transaction or ID of the smart card used in the transaction." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cardID" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:modelName  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Name of a specific model associated with an entity, e.g., sensor, device etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "modelName" ;
+        skos:exactMatch      Fiware:modelName ;
+        iudx:domainIncludes  iudx:ModelInfo ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:totalCount  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Count of the revenue collection service corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalCount" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:illuminance  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed instantaneous ambient light intensity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "illuminance" ;
+        skos:exactMatch      Fiware:illuminance ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:wardNum  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Ward number corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "wardNum" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:categoryCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unique identifier for the category corresponding to the issue reported." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "categoryCode" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:id  rdf:type            iudx:TextProperty ;
+        rdfs:comment         "ID of the entity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "id" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:WasteWaterMgmt  rdf:type  owl:Class ;
+        rdfs:comment      "Data model for waste water treatment plant." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WasteWaterMgmt" ;
+        rdfs:subClassOf   iudx:WasteManagement .
+
+iudx:LineString  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the GeoJSON LineString" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "LineString" ;
+        rdfs:subClassOf   iudx:GeoJSONGeometry ;
+        skos:exactMatch   geojson:LineString .
+
+iudx:GeoProperty  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the class of all GeoProperties in IUDX. The range of a geo-property are objects describing geo-coordinates (e.g., latitude, longitude, GeoJSON objects etc.)" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "GeoProperty" ;
+        rdfs:subClassOf   iudx:StructuredProperty .
+
+iudx:IUDXEntity  rdf:type      owl:Class ;
+        rdfs:comment           "Class of all IUDX Entities (Resource, ResourceGroup, ResourceServer, Provider etc.)" ;
+        rdfs:isDefinedBy       iudx: ;
+        rdfs:label             "IUDXEntity" ;
+        rdfs:subClassOf        iudx:Thing ;
+        iudx:requiredProperty  true .
+
+iudx:Boolean  rdf:type    owl:Class ;
+        rdfs:comment      "Data type: True or False" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Boolean" ;
+        skos:exactMatch   schema:Boolean .
+
+iudx:safetiPinScore  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Score given to the location corresponding to this observation. The score is on a scale of 5 if the SafetiPinType is 'Feeling' and on a scale of 10 if the SafetiPinType is 'Audit'" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "safetiPinScore" ;
+        iudx:domainIncludes  iudx:SafetiPin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:ecRecoveryAmount
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Amount collected towards Enrollment Certificate from the establishment on annual basis." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ecRecoveryAmount" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:WmgmtVehicle  rdf:type  owl:Class ;
+        rdfs:comment      "Data model for solid waste management vehicles." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WmgmtVehicle" ;
+        rdfs:subClassOf   iudx:WasteManagement .
+
+iudx:category  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "The category name corresponding to the issue that has been reported." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "category" ;
+        skos:exactMatch      open311:group ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:powerFactor  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Power factor or the ratio of working power of the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "powerFactor" ;
+        skos:exactMatch      Fiware:powerFactor ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:WasteManagement  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to the waste management domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WasteManagement" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:RelationshipValue
+        rdf:type               owl:Class ;
+        rdfs:comment           "Describes the value of a Relationship Object." ;
+        rdfs:isDefinedBy       iudx: ;
+        rdfs:label             "RelationshipValue" ;
+        rdfs:subClassOf        iudx:StructuredValue ;
+        iudx:requiredProperty  true .
+
+iudx:deviceList  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Information of device part number and sub devices corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceList" ;
+        iudx:domainIncludes  iudx:Device ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:co  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Carbon Monoxide (CO). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "co" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:resourceServer  rdf:type  iudx:Relationship ;
+        rdfs:comment         "IRI pointing to the ResourceServer entity for a given Resource or ResourceGroup." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceServer" ;
+        iudx:domainIncludes  iudx:ResourceGroup , iudx:Resource ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:tankCapacity  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Maximum amount of water the water storage tank corresponding to this observation can hold." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankCapacity" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:o3  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Ozone (O3). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "o3" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:current  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Current value of the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "current" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:iudxResourceAPIs
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "The set of IUDX resource APIs supported by a given ResourceGroup. ENUM: [TEMPORAL, SPATIAL, ATTR, TEXT]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "iudxResourceAPIs" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:position  rdf:type      iudx:StructuredProperty ;
+        rdfs:comment         "Deccribes the current position of the vehicle corresponding to this observation. SameAs:'position' field from GTFS Realtime message-VehiclePosition(https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "position" ;
+        iudx:domainIncludes  iudx:VehiclePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:GeoCoordinates .
+
+iudx:actual_trip_start_time
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "This field specifies the time at which service actually began.  This is SameAs: absolute 'time'(StopTimeEvent) in the 'arrival' field of the stop_time_update (StopTimeUpdate) message of the GTFS Realtime message-TripUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-tripupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "actual_trip_start_time" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:requiredProperty
+        rdf:type             rdf:Property ;
+        rdfs:comment         "Boolean Value. Indicates if this property is required in the domain." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "requiredProperties" ;
+        iudx:domainIncludes  rdf:Property ;
+        iudx:rangeIncludes   iudx:Boolean .
+
+iudx:transactionTypeID
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "ID for the transactionType corresponding to this observation. 2401 - QR sale, C201- smart card entry , C202 - smart card exit etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "transactionTypeID" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Streetlight  rdf:type  owl:Class ;
+        rdfs:comment      "A streetlight Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Streetlight" ;
+        rdfs:subClassOf   iudx:StreetLight .
+
+iudx:streetPoleNum  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Street pole information associated with the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "streetPoleNum" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:powerConsumption
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Power consumed by the LED or the streetlight bulb corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "powerConsumption" ;
+        skos:exactMatch      Fiware:powerConsumption ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:ValueDescriptor  rdf:type  owl:Class ;
+        rdfs:comment      "Value descriptors are JSON objects that describes the value object for a given property." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "ValueDescriptor" ;
+        rdfs:subClassOf   iudx:Intangible .
+
+iudx:modelURL  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "URL providing further information of a specific model associated with an entity, e.g., sensor, device etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "modelURL" ;
+        iudx:domainIncludes  iudx:ModelInfo ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:cityID  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "City ID corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cityID" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:secureDataFields
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "List of properties/fields/attributes contained in the data available from the resources associated with a given resource Group which are secure, i.e., need authorization from the auth server to access these fields for a given resource." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "secureDataFields" ;
+        iudx:domainIncludes  iudx:DataFieldListValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:trip_update  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "Describes the trip information like delay, departures, etc., for a trip made by the vehicle corresponding to this observation.SameAs:'trip_update' field from GTFS Realtime message-FeedEntity(https://developers.google.com/transit/gtfs-realtime/reference#message-feedentity)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip_update" ;
+        iudx:domainIncludes  iudx:FeedEntity , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:TripUpdate .
+
+iudx:StreetLightFeeder
+        rdf:type          owl:Class ;
+        rdfs:comment      "A streetlight control panel Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StreetLightFeeder" ;
+        rdfs:subClassOf   iudx:StreetLight .
+
+iudx:schedule_relationship
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Describes if the Route/Trip has been scheduled. SameAs: 'schedule_relationship' field from enumScheduleRelationship (https://developers.google.com/transit/gtfs-realtime/reference#enum-schedulerelationship-2)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "schedule_relationship" ;
+        skos:exactMatch      GTFS:schedule_relationship ;
+        iudx:domainIncludes  iudx:TripDescriptor , iudx:StopTimeUpdate , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:dataDescriptor  rdf:type  iudx:Relationship ;
+        rdfs:comment         "URI pointing to the data-descriptor entity" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataDescriptor" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:DataModel , iudx:RelationshipValue , iudx:Text .
+
+iudx:WmgmtBin  rdf:type   owl:Class ;
+        rdfs:comment      "Data model for solid waste management bins." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WmgmtBin" ;
+        rdfs:subClassOf   iudx:WasteManagement .
+
+iudx:Version  rdf:type    owl:Class ;
+        rdfs:comment      "Version information associated with the observations." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Version" .
+
+iudx:measurand  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Property/properties sensed/observed/measured by the device." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "measurand" ;
+        iudx:domainIncludes  iudx:Device ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:trip  rdf:type          iudx:StructuredProperty ;
+        rdfs:comment         "Describes the trip the vehicle corresponding to this observation is making. SameAs:'trip' field from GTFS Realtime message-VehiclePosition(https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)(https://developers.google.com/transit/gtfs-realtime/reference#message-tripupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip" ;
+        skos:exactMatch      GTFS:trip ;
+        iudx:domainIncludes  iudx:TripUpdate , iudx:VehiclePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:TripDescriptor .
+
+iudx:destinationStopCategory
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Type of the destination bus stop corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "destinationStopCategory" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:deviceID  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Device ID of the physical sensor/ measurement station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceID" ;
+        iudx:domainIncludes  iudx:Device ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:agency_fare_url  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "URL of a web page that contains the details of the fares and also could allow to purchase tickets for that agency online. SameAs: 'agency_fare_url' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_fare_url" ;
+        skos:exactMatch      GTFS:agency_fare_url ;
+        iudx:domainIncludes  iudx:BikeDockingStation , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:AccessObjectInfoValue
+        rdf:type          owl:Class ;
+        rdfs:comment      "Describes information on accessing data from a given resource." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "AccessObjectInfoValue" ;
+        rdfs:subClassOf   iudx:StructuredValue .
+
+iudx:windSpeed  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed wind speed." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "windSpeed" ;
+        skos:exactMatch      Fiware:windSpeed ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stop_name  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Describes the name of the Bus Stop. SameAs: 'stop_name' field from GTFS Static Field definitions-stops.txt (https://developers.google.com/transit/gtfs/reference#stopstxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_name" ;
+        skos:exactMatch      GTFS:stop_name ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:binMaxLoad  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Maximum load (weight) that the waste bin can hold." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binMaxLoad" ;
+        skos:exactMatch      Fiware:maximumLoad ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:VehiclePosition  rdf:type  owl:Class ;
+        rdfs:comment      "Realtime positioning information for a given vehicle." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "VehiclePosition" .
+
+iudx:employmentType  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Type of employment. ENUM: [Contractual New, Contractual Old, Regular, Outsourcing]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "employmentType" ;
+        skos:exactMatch      schema:employmentType ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:occupancyLevel  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Occupancy level in the public transit bus corresponding to this observation. 'Red' indicates the congestion level in the bus is HIGH, 'Yellow' indicates the congestion level in the bus is MODERATE and 'Green' indicates the congestion level in the bus is LOW." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "occupancyLevel" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:entity_id  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Feed unique ID for the entity coressponding to this observation.SameAs:'entity_id' field from GTFS Realtime message-FeedEntity(https://developers.google.com/transit/gtfs-realtime/reference#message-feedentity)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "entity_id" ;
+        iudx:domainIncludes  iudx:FeedEntity , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:start_date  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Describes the initial scheduled date of the trip corresponding to the vehicle this observation. An example format for this field - YYYYMMDD. SameAs: 'start_date' field from GTFS Realtime message-TripDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "start_date" ;
+        iudx:domainIncludes  iudx:TripDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:location  rdf:type      iudx:GeoProperty ;
+        rdfs:comment         "Location associated with a resource Item (a spatial point), a group of resource items (a spatial region) or even an observation in case of a mobile sensor." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "location" ;
+        skos:exactMatch      schema:location ;
+        iudx:domainIncludes  iudx:StreetLightFeeder , iudx:WaterDistributionNetwork , iudx:BikeDockingStation , iudx:Camera , iudx:ResourceGroup , iudx:Provider , iudx:ResourceServer , iudx:WmgmtBin , iudx:PointOfInterest , iudx:Resource , iudx:WmgmtVehicle , iudx:EnvFlood , iudx:Organization , iudx:EnvAQM , iudx:TrafficViolations , iudx:TransitManagement , iudx:IssueReporting , iudx:WasteWaterMgmt , iudx:Streetlight , iudx:SafetiPin ;
+        iudx:rangeIncludes   iudx:Text , iudx:GeoJSONGeometry , iudx:Point , iudx:ValueDescriptor , iudx:Place .
+
+iudx:BikeDockingStation
+        rdf:type          owl:Class ;
+        rdfs:comment      "A citizen bike hiring system Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "BikeDockingStation" ;
+        rdfs:subClassOf   iudx:UrbanMobility .
+
+iudx:totalML  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Total MLDs of water discharged from the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalML" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:DateTime  rdf:type   owl:Class ;
+        rdfs:comment      "Describes ISO Time in a DateTime format as specified in ISO 8601" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "DateTime" ;
+        skos:exactMatch   schema:DateTime .
+
+iudx:Relationship  rdf:type  owl:Class ;
+        rdfs:comment      "Class of all Relationships in IUDX. A relationship property relates a resource to another resource. The range of relationship property are objects describing the links (URIs etc.) to the related resource and may contain meta-information about the type of relationship." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Relationship" ;
+        rdfs:subClassOf   iudx:Property .
+
+iudx:tripDetails  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "A descriptor of realtime update on the schedule of a vehicle along a trip." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tripDetails" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:TripDetails .
+
+iudx:reactivePower  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Reactive power consumed per phase. Ordered triple comprising of active power from three phases in the following order: [R Y B]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "reactivePower" ;
+        skos:exactMatch      Fiware:reactivePower ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:NumericArray .
+
+iudx:month  rdf:type         iudx:TextProperty ;
+        rdfs:comment         "Month corresponding to this observation and is described in MM format, for eg. '05' for the month of May." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "month" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:StreetLight  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to the streetlight domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StreetLight" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:paymentStatus  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "The payment status of the fine or violation or challan corresponding to this observation. ENUM[\"Paid\", \"Unpaid\"]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "paymentStatus" ;
+        iudx:domainIncludes  iudx:TrafficViolations ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:tn  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Total Nitrogen concentration measured in waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tn" ;
+        skos:exactMatch      Fiware:tn ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:EmployeeDetails  rdf:type  owl:Class ;
+        rdfs:comment      "A Data Model for employee information in an organization." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "EmployeeDetails" ;
+        rdfs:subClassOf   iudx:WorkPlace .
+
+iudx:VehicleDescriptor
+        rdf:type          owl:Class ;
+        rdfs:comment      "Identification information for the vehicle performing the trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "VehicleDescriptor" .
+
+iudx:QuantitativeProperty
+        rdf:type          owl:Class ;
+        rdfs:comment      "Class of all Quantitative properties in IUDX. The range of Quantitative properties are objects describing the associated values as well as meta-information associated with the values. Typically, the value of quantiative property isa numeric value. However, in some cases, it may be a string that has to be interpreted as a number." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "QuantitativeProperty" ;
+        rdfs:subClassOf   iudx:StructuredProperty .
+
+iudx:uncertainity  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "If uncertainty is omitted, it is interpreted as unknown. To specify a completely certain prediction, set its uncertainty to 0.SameAs: 'uncertainity' field from GTFS Realtime message-StopTimeEvent (https://developers.google.com/transit/gtfs-realtime/reference#message-stoptimeevent)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "uncertainity" ;
+        iudx:domainIncludes  iudx:StopTimeEvent , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:revenueCollectionType
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Type of source from which the city administration collects the revenue, could be property tax, vehicle registration, party hall booking, community hall booking, auditorium booking etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "revenueCollectionType" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:itemCreatedAt  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "DateTime of creation of a catalogue item." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "itemCreatedAt" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:benzene  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Benzene (C6H6). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "benzene" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:SafetiPin  rdf:type  owl:Class ;
+        rdfs:comment      "A Data Model for information collected from a large group of people who submit their data via the My safetiPin app." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "SafetiPin" ;
+        rdfs:subClassOf   iudx:Civic .
+
+iudx:accessPolicy  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Defines the access policy for resources belonging to ResourceGroup or an individual Resource. In case of ResourceGroup item, it can take values: [OPEN, SECURE, MIXED]. OPEN implies all Resources in the group are open (and need no authorization token for data access). SECURE implies that all Resources are secured and will need authorization token for access. MIXED implies that some of Resource items may be open. In case of accessPolicy being set to MIXED in the resource group, the individual resource items will further qualify the access policy using this field. In case of Resource item, it will take values from: [OPEN, SECURE]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "accessPolicy" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:route_type  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Number indicating the type of transport-\n1 - Subway, Metro. Any underground rail system within a metropolitan area.\n2 - Rail. Used for intercity or long-distance travel.\n3 - Bus. Used for short- and long-distance bus routes. \nSameAs: 'route_type' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_type" ;
+        skos:exactMatch      GTFS:route_type ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number , iudx:Text .
+
+iudx:travelTime  rdf:type    iudx:TimeProperty ;
+        rdfs:comment         "The time taken to travel between the orgin bus stop and the destination bus stop corresponding to this observation in HH:MM:SS format(HH:MM:SS is also accepted, if the hour begins with 0)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "travelTime" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:authServerURL  rdf:type  iudx:Relationship ;
+        rdfs:comment         "URL of the IUDX authorization server used for a given resource." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "authServerURL" ;
+        iudx:domainIncludes  iudx:AuthServerInfoValue ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:weatherType  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Observed weather type or status. Represented by a comma separated list of weather types, e.g., cloudy, sunny etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "weatherType" ;
+        skos:exactMatch      Fiware:weatherType ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:windDirection  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed wind directiont. Measured in degrees clockwise from due north." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "windDirection" ;
+        skos:exactMatch      Fiware:windDirection ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:vehicleDesc  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "Describes the additional information of the vehicle corresponding to this observation. SameAs:'vehicle' field from GTFS Realtime message-VehiclePosition(https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)/(https://developers.google.com/transit/gtfs-realtime/reference#message-tripupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleDesc" ;
+        skos:exactMatch      GTFS:vehicle ;
+        iudx:domainIncludes  iudx:TripUpdate , iudx:VehiclePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:VehicleDescriptor .
+
+iudx:GeoCoordinates  rdf:type  owl:Class ;
+        rdfs:comment      "Geo coordinates in Latitude and Longitude for a given place. The Lat/Long values are in WGS84 notation" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "GeoCoordinates" ;
+        rdfs:subClassOf   iudx:StructuredValue ;
+        skos:exactMatch   schema:GeoCoordinates .
+
+iudx:deviceSimNumber  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Gives the sim number of the device in the waste management vehicle." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceSimNumber" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:Device ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:equipmentType  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Type of equipment or the name of the equipment corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentType" ;
+        iudx:domainIncludes  iudx:TrafficViolations , iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:StructuredValue  rdf:type  owl:Class ;
+        rdfs:comment      "Describes a generic nested JSON structured value" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StructuredValue" ;
+        rdfs:subClassOf   iudx:Intangible .
+
+iudx:activePower  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Active power consumed per phase. Ordered triple comprising of active power from three phases in the following order: [R Y B]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "activePower" ;
+        skos:exactMatch      Fiware:activePower ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:NumericArray .
+
+iudx:cameraUsage  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Purpose of the camera corresponding to this observation. ENUM: [SURVEILLANCE, RLVD, ANPR/LPR]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cameraUsage" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:totalPresent  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Number of employees reported to work" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalPresent" ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:tripNetWeightCollected
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "The net weight of garbage collected by the SWM vehicle corresponding to this observation at the end of the trip." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tripNetWeightCollected" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:ModelInfo  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the manufacture information of the device, sensor or system in consideration." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "ModelInfo" ;
+        rdfs:subClassOf   iudx:Thing .
+
+iudx:currentTripCount
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "The current count of trips made by the vehicle corresponding to this obersvation on the given day of operation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "currentTripCount" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stop_url  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "This field contains the URL of a web page about a particular stop and is different from the agency_url and the route_url fields. SameAs: 'stop_url' field from GTFS Static Field definitions-stops.txt (https://developers.google.com/transit/gtfs/reference#stopstxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_url" ;
+        skos:exactMatch      GTFS:stop_url ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:departmentID  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unique ID or code associated with the department which is associated with the service or the issue corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "departmentID" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:arrival  rdf:type       iudx:StructuredProperty ;
+        rdfs:comment         "If schedule_relationship is empty or SCHEDULED, either arrival or departure must be provided within a StopTimeUpdate. SameAs: 'arrival' field from GTFS Realtime message-StopTimeUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-stoptimeupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "arrival" ;
+        iudx:domainIncludes  iudx:StopTimeUpdate , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:StopTimeEvent .
+
+iudx:binFillingLevel  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Current level of waste in the bin. Typically, the level is specified in terms of percentage volume filled." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binFillingLevel" ;
+        skos:exactMatch      Fiware:fillingLevel ;
+        iudx:domainIncludes  iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:binClearedTime  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "Time when the bin was last cleared." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binClearedTime" ;
+        skos:exactMatch      Fiware:dateLastEmptying ;
+        iudx:domainIncludes  iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:fuelFilled  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Amount of fuel filled in liters to the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "fuelFilled" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:observationDateTime
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "Last reported time of observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "observationDateTime" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:WiFiHostspot , iudx:EnvWeather , iudx:BikeDockingStation , iudx:TransitManagement , iudx:WasteWaterMgmt , iudx:EnvAQM , iudx:EnvFlood , iudx:SafetiPin , iudx:StreetLightFeeder , iudx:FareCollectionSystem , iudx:Streetlight , iudx:EmployeeDetails , iudx:WaterDistributionNetwork , iudx:TrafficViolations , iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:DateTime , iudx:ValueDescriptor .
+
+iudx:seating_capacity
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Describes the passenger seating capacity of the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "seating_capacity" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:fuelType  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "The type of fuel suitable for the engine or engines of the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "fuelType" ;
+        skos:exactMatch      schema:fuelType ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:totalActivePower
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Total active power consumed by all phases" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalActivePower" ;
+        skos:exactMatch      Fiware:totalActivePower ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:RFID  rdf:type          iudx:TextProperty ;
+        rdfs:comment         "Gives the ID of the RFID reader." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "RFID" ;
+        iudx:domainIncludes  iudx:WmgmtBin , iudx:Device ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:stateName  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Name of the state corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stateName" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:current_stop_sequence
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Gives the stop sequence index of the current stop. This is determined by considering current_status, if current_status is missing IN_TRANSIT_TO is assumed. SameAs:'current_stop_sequence' field from GTFS Realtime message-VehiclePosition(https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "current_stop_sequence" ;
+        iudx:domainIncludes  iudx:VehiclePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:depot_name  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Describes the depot name of the bus depot corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "depot_name" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:DataModel  rdf:type  owl:Class ;
+        rdfs:comment      "Class of all Data Models." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "DataModel" ;
+        rdfs:subClassOf   iudx:Thing .
+
+iudx:stationName  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "The name of the bike hire docking station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stationName" ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:VideoSystems  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to surveillance or traffic cameras" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "VideoSystems" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:MunicipalityDesc
+        rdf:type          owl:Class ;
+        rdfs:comment      "Municipality information corresponding to this observation." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "MunicipalityDesc" .
+
+iudx:geoCovers  rdf:type     iudx:GeoProperty ;
+        rdfs:comment         "Represents the coverage relationship between two geometries/places." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "geoCovers" ;
+        iudx:domainIncludes  iudx:TransitManagement , iudx:Place ;
+        iudx:rangeIncludes   iudx:GeoJSONGeometry .
+
+iudx:solarRadiation  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed solar radiation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "solarRadiation" ;
+        skos:exactMatch      Fiware:solarRadiation ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:resolutionStatus
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Status of the issue that was reported in terms of resolution or the actions taken on it. Could be Open, Assigned, InProgress, Unassigned, Closed." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resolutionStatus" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:tripDirection  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Gives the direction in which the vehicle is travelling in ENUM[UP,DN]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tripDirection" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:tankDepth  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "Depth of the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankdepth" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:WasteBinModel  rdf:type  owl:Class ;
+        rdfs:comment      "Properties of the waste bin that could have sensors which report measurements corresponding to this observation." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WasteBinModel" .
+
+iudx:unitCode  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "The unit of measurement given using the UN/CEFACT Common Code (3 characters) or a URL. Other codes/unit vocabularies may be used with a prefix" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "unitCode" ;
+        skos:exactMatch      schema:unitCode ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:equipmentSequenceNumber
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Sequence number for the given equipment." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentSequenceNumber" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:date  rdf:type          iudx:TextProperty ;
+        rdfs:comment         "Date corresponding to this observation and is described in YYYY-MM-DD format, for eg. '2020-11-01'." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "date" ;
+        iudx:domainIncludes  iudx:EmployeeDetails , iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:uv  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed levels of UV radiation. Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "uv" ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:employeeID  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Unique ID of the employee corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "employeeID" ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:phaseVoltage  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Voltage per phase. Ordered triple comprising of active power from three phases in the following order: [R Y B]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "phaseVoltage" ;
+        skos:exactMatch      Fiware:voltage ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:NumericArray .
+
+iudx:po4  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Ortho-phosphate concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "po4" ;
+        skos:exactMatch      Fiware:po4 ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:binRecommendedLoad
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Recommended load (weight) that the waste bin corresponding to this observation can hold." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binRecommendedLoad" ;
+        skos:exactMatch      Fiware:recommendedLoad ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:reportID  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Unique ID assigned for the issue or report or feedback or transaction corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "reportID" ;
+        skos:exactMatch      open311:servicecode ;
+        iudx:domainIncludes  iudx:SafetiPin , iudx:IssueReporting , iudx:WmgmtVehicle , iudx:TrafficViolations ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:areaServed  rdf:type    iudx:GeoProperty ;
+        rdfs:comment         "Area served by the entity or a service." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "areaServed" ;
+        iudx:domainIncludes  iudx:StreetLightFeeder , iudx:ModelInfo ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:equipmentCompanyCode
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Company/Agency code for the transaction equipment (used by fare collection agency). For example, 103 - CBS (city bus service),102 -  BRTS etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentCompanyCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Number  rdf:type     owl:Class ;
+        rdfs:comment      "Data type: Number for representing numeric values (Decimals, Integers, etc)" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Number" ;
+        skos:exactMatch   schema:Number .
+
+iudx:pb  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Lead (Pb). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "pb" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:dataSampleFile  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Sample file download link for the resource" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataSampleFile" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:avgOverTime  rdf:type   rdf:QuantitativeProperty ;
+        rdfs:comment         "Describes the average value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "avgOverTime" ;
+        iudx:domainIncludes  iudx:TimeSeriesAggregation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stationCode  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "The station number or station code of the bike hire docking station corresponding to the observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stationCode" ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:fuelEfficiency  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The distance traveled per unit of fuel used, commonly in kilometers per liter (km/L)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "fuelEfficiency" ;
+        skos:exactMatch      schema:fuelEfficiency ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:nh3  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Ammonia (NH3). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "nh3" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:title  rdf:type         iudx:TextProperty ;
+        rdfs:comment         "The title assigned to the issue, report or feedback corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "title" ;
+        skos:exactMatch      open311:description ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:relationType  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Type of relation. ENUM: [REL_MESSAGESTREAM, REL_FILE]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "relationType" ;
+        iudx:domainIncludes  iudx:RelationshipValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:employeeDesignation
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Title assigned to the employee corresponding to this observation. Eg. Sweeper, Driver, Helper, Supervisor, Safai Meth, Cleaner, Bhisti. etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "employeeDesignation" ;
+        skos:exactMatch      schema:jobTitle ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:transactionVehicleNum
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Code used by fare collection agency for the vehicle number corresponding to the transaction." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "transactionVehicleNum" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:durationInMinutes
+        rdf:type             rdf:Property ;
+        rdfs:comment         "Specifies an interval duration in minutes for computing statistical aggregations." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "durationInMinutes" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Number .
+
+iudx:DataFieldListValue
+        rdf:type          owl:Class ;
+        rdfs:comment      "Lists various fields associated with the data available from a given group of resource items." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "DataFieldListValue" ;
+        rdfs:subClassOf   iudx:StructuredValue .
+
+iudx:wasteBinInfo  rdf:type  iudx:StructuredProperty ;
+        rdfs:comment         "Describes the information of the waste bin device, sensor in consideration" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "wasteBinInfo" ;
+        iudx:domainIncludes  iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:WasteBinModel .
+
+iudx:binCategory  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Category/type of the waste container bin. It can be a household bin or a dumpster or any other pre-defined category/type." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binCategory" ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Organization  rdf:type  owl:Class ;
+        rdfs:comment      "Information about a given organization (contact info, email, urls etc.)" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Organization" ;
+        rdfs:subClassOf   iudx:Thing ;
+        skos:exactMatch   schema:Organization .
+
+iudx:routeStopSequence
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Gives the stop IDs/stop codes or station IDs/station codes in the right sequence for the route or line corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "routeStopSequence" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:domainIncludes  rdf:type  rdf:Property ;
+        rdfs:comment         "Relates a property to a class that is (one of) the type(s) the property is expected to be used on." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "domainIncludes" ;
+        iudx:domainIncludes  rdf:Property ;
+        iudx:rangeIncludes   rdfs:Class .
+
+iudx:no  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Nitrogen Monoxide (NO). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "no" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:waterFlow  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "Flow or current of water flowing from the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "waterFlow" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:resourceServerHTTPAccessURL
+        rdf:type             iudx:Relationship ;
+        rdfs:comment         "Resource Server URL for data access based on HTTP/REST APIs" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceServerHTTPAccessURL" ;
+        iudx:domainIncludes  iudx:ResourceServer ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:endDateTime  rdf:type   iudx:TimeProperty ;
+        rdfs:comment         "Reported end time corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "endDateTime" ;
+        iudx:domainIncludes  iudx:Camera , iudx:Version ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:DateTime .
+
+iudx:TextProperty  rdf:type  owl:Class ;
+        rdfs:comment      "Class of all Text Properties. The range of Text property contains text (multiple words)." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TextProperty" ;
+        rdfs:subClassOf   iudx:Property .
+
+iudx:EnvWeather  rdf:type  owl:Class ;
+        rdfs:comment      "Data Model for weather conditions observed at a certain place and time." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "EnvWeather" ;
+        rdfs:subClassOf   iudx:Environment .
+
+iudx:route_short_name
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Short name of a route. This will often be the transit vehicle's board name like \"402D\",  or \"Green\" that riders use to identify a route. SameAs: 'route_short_name' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_short_name" ;
+        skos:exactMatch      GTFS:route_short_name ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:pm2p5  rdf:type         iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Particulate Matter 2.5 (PM2.5). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "pm2p5" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:deviceName  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Device Name or Station name of the sensor device/station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceName" ;
+        iudx:domainIncludes  iudx:Device ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:turbidity  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "Measurement of the amount of light that is scattered by material in the water when a light is shined through the water." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "turbidity" ;
+        skos:exactMatch      Fiware:WaterQualityObserved.turbidity ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:TimeSeriesAggregation .
+
+iudx:amountCollected  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Amount collected towards the service corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "amountCollected" ;
+        iudx:domainIncludes  iudx:TrafficViolations , iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:destinationStopName
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "The name of the destination bus stop corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "destinationStopName" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:dataDescriptorName
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Name of the entity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataDescriptorName" ;
+        skos:exactMatch      schema:name ;
+        iudx:domainIncludes  iudx:DataDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:atmosphericPressure
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed air (atmospheric or barometric) pressure." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "atmosphericPressure" ;
+        skos:exactMatch      Fiware:atmosphericPressure ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:vehicleType  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Describes the type of vehicle corresponding to this observation, could be hopper, compactor, tipper, dumper in case of solid waste management vehicles, BRT mini bus, BRT bus, city bus in case of ITMS vehicles and Moped/Scooter, Motor Cycle,  Autorickshaw, Private car/ Jeep car, Tempo, Bus, E-Moped/E-Scooter/E-Motor Cycle, Public motor in case of vehicle registration." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleType" ;
+        iudx:domainIncludes  iudx:RevenueCollection , iudx:TransitManagement , iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:ignitionStatus  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Gives the ignition status of the vehicle.(Y, N)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ignitionStatus" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:vehicle_position
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Describes the realtime position of the vehicle corresponding to this observation. SameAs:'vehicle' field from GTFS Realtime message-FeedEntity(https://developers.google.com/transit/gtfs-realtime/reference#message-feedentity)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicle_position" ;
+        iudx:domainIncludes  iudx:FeedEntity , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:VehiclePosition .
+
+iudx:originStopCategory
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Type of the origin bus stop corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "originStopCategory" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:depot_id  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Describes the unique id of the bus depot corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "depot_id" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:outFlow  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Out-flow amount into the treatment plant/reservoir corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "outFlow" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:maxValue  rdf:type      rdf:QuantitativeProperty ;
+        rdfs:comment         "The upper value of a quantity/property." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "maxValue" ;
+        skos:exactMatch      schema:maxValue ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Number .
+
+iudx:stop_sequence  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Indicates the stop sequencel of the vehicle corresponding to this observation, can be referenced from the GTFS static feed stop_times.txt. SameAs: 'stop_sequence' field from GTFS Realtime message-StopTimeUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-stoptimeupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_sequence" ;
+        iudx:domainIncludes  iudx:TransitManagement , iudx:TripDetails , iudx:StopTimeUpdate , iudx:Sequence ;
+        iudx:rangeIncludes   iudx:Number , iudx:ValueDescriptor .
+
+iudx:Polygon  rdf:type    owl:Class ;
+        rdfs:comment      "Describes the GeoJSON Polygon" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Polygon" ;
+        rdfs:subClassOf   iudx:GeoJSONGeometry ;
+        skos:exactMatch   geojson:Polygon .
+
+iudx:StopTimeEvent  rdf:type  owl:Class ;
+        rdfs:comment      "Timing information for a single predicted event (either arrival or departure). Timing consists of delay and/or estimated time, and uncertainty." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StopTimeEvent" .
+
+iudx:start_time  rdf:type    iudx:TimeProperty ;
+        rdfs:comment         "Describes the initial scheduled start time of the trip corresponding to the vehicle this observation. An example format for this field - 11:15:35 or 25:15:35. SameAs: 'start_time' field from GTFS Realtime message-TripDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "start_time" ;
+        iudx:domainIncludes  iudx:TripDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:route_text_color
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "This field can be used to specify a legible color to use for text drawn against a background of route_color. The color must be provided as a six-character hexadecimal number, for example, FFD700. If no color is specified, the default text color is black (000000). SameAs: 'route_text_color' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_text_color" ;
+        skos:exactMatch      GTFS:route_text_color ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:gender  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "Gender of the employee or person corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "gender" ;
+        skos:exactMatch      schema:gender ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:toc  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Total Organic Carbon concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "toc" ;
+        skos:exactMatch      Fiware:toc ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:fareForChild  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The fare for a child in the journey corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "fareForChild" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:Resource  rdf:type        owl:Class ;
+        rdfs:comment           "Describes the Resource entity in the IUDX catalogue." ;
+        rdfs:isDefinedBy       iudx: ;
+        rdfs:label             "Resource" ;
+        rdfs:subClassOf        iudx:IUDXEntity ;
+        iudx:requiredProperty  true .
+
+iudx:imageSnapshot  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Camera feed snapshot download link for the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "imageSnapshot" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:annotatedMap  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Annotated map view indicating the orientations for the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "annotatedMap" ;
+        iudx:domainIncludes  iudx:Orientation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:dewPoint  rdf:type      iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed  temperature to which air must be cooled to become saturated with water vapor." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dewPoint" ;
+        skos:exactMatch      Fiware:dewPoint ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:vehicleTrackerDevice
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Installation status of the GPS device or the tracking device fitted to the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleTrackerDevice" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:coordinates  rdf:type   iudx:GeoProperty ;
+        rdfs:comment         "Coordinates for the GeoJSON object" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "coordinates" ;
+        iudx:domainIncludes  iudx:Point ;
+        iudx:rangeIncludes   iudx:Number .
+
+iudx:FareCollectionSystem
+        rdf:type          owl:Class ;
+        rdfs:comment      "A public transit fare collection system Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "FareCollectionSystem" ;
+        rdfs:subClassOf   iudx:UrbanMobility .
+
+iudx:stop_id  rdf:type       iudx:TextProperty ;
+        rdfs:comment         "Stop ID/Stop name of the bus stops corresponding to the bus in this observation. SameAs: 'stop_id' field from GTFS Realtime message-Vehicleposition (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_id" ;
+        skos:exactMatch      GTFS:stop_id ;
+        iudx:domainIncludes  iudx:Sequence , iudx:TripDetails , iudx:StopTimeUpdate , iudx:VehicePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:binID  rdf:type         iudx:TextProperty ;
+        rdfs:comment         "ID of the waste carrying bin" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binID" ;
+        iudx:domainIncludes  iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:ticketTypeCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unique ticket type code of the corresponding trip." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ticketTypeCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:tic  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Total Inorganic Carbon concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tic" ;
+        skos:exactMatch      Fiware:tic ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:route_long_name  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Full name of a route. This name is more descriptive than the routeShortName and often includes the route's destination or stop. This mostly includes the to and from destination names of the route. SameAs: 'route_long_name' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_long_name" ;
+        skos:exactMatch      GTFS:route_long_name ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:waterPressure  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Pressure of water flowing from the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "waterPressure" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:itemDeprecatedAt
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "DateTime of deprecation of a catalogue item." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "itemDeprecatedAt" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:co2  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Carbon Dioxide (CO2). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "co2" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:availableBikeNumber
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "The number of bikes available in the bike hire docking station to be hired by users." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "availableBikeNumber" ;
+        skos:exactMatch      Fiware:availableBikeNumber ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stage  rdf:type         iudx:QuantitativeProperty ;
+        rdfs:comment         "Total number of stages from the origin bus stop to the destination bus stop." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stage" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:powerRating  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Power rating of the LED or the streetlight bulb corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "powerRating" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:aqiMajorPollutantForecast
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Forecasted major air pollutant in the Air Quality Index (AQI) over a certain duration in future." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "aqiMajorPollutantForecast" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:powerState  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Indicates the current status of the streetlight feeder panel." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "powerState" ;
+        skos:exactMatch      Fiware:powerState ;
+        iudx:domainIncludes  iudx:Streetlight , iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:originDestinationCode
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "The code for the orgin and destination stops corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "originDestinationCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:IssueReporting  rdf:type  owl:Class ;
+        rdfs:comment      "A Data Model for citizen issues, reports and feedbacks." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "IssueReporting" ;
+        rdfs:subClassOf   iudx:Civic .
+
+iudx:Provider  rdf:type        owl:Class ;
+        rdfs:comment           "Describes the Provider entity in the IUDX catalogue." ;
+        rdfs:isDefinedBy       iudx: ;
+        rdfs:label             "Provider" ;
+        rdfs:subClassOf        iudx:IUDXEntity ;
+        iudx:requiredProperty  true .
+
+iudx:ZoneID  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "Zone ID of the entity corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ZoneID" ;
+        iudx:domainIncludes  iudx:PointOfInterest ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:measAccuracy  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Accuracy of a measurement. Maximum difference that can exist between the actual value and the measured value. It can be specified in relative as well as absolute terms." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "measAccuracy" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:RevenueCollection
+        rdf:type          owl:Class ;
+        rdfs:comment      "A Data Model for city revenue collection operations." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "RevenueCollection" ;
+        rdfs:subClassOf   iudx:Civic .
+
+iudx:authType  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Identification of the auth scheme used for a given resource.  ENUM: [IUDXAUTH]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "authType" ;
+        iudx:domainIncludes  iudx:AuthServerInfoValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:nh4  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Ammonium concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "nh4" ;
+        skos:exactMatch      Fiware:nh4 ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:measuredDistance
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Describes the distance measured by the sensor, from the sensor tip to the upper surface of water." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "measuredDistance" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:cl  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Concentration of chlorides in the water." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cl" ;
+        skos:exactMatch      Fiware:WaterQualityObserved.Cl ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:TimeSeriesAggregation .
+
+iudx:Sequence  rdf:type   owl:Class ;
+        rdfs:comment      "A descriptor for the sequence of bus stops of a transit vehicle along a trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Sequence" .
+
+iudx:route_color  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "If assigned, this field defines a color that corresponds to a route. The color must be provided as a six-character hexadecimal number, for example, 00FFFF. If no color is specified, the default route color is white (FFFFFF). SameAs: 'route_color' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_color" ;
+        skos:exactMatch      GTFS:route_color ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:stop_time_update
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Updated sorted stop sequence for the trip made by the vehicle corresponding to this observation, not to be considered if schedule_realtionship is \"CANCELED\". SameAs: 'stop_time_update' field from GTFS Realtime message-TripUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-tripupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_time_update" ;
+        iudx:domainIncludes  iudx:TripUpdate , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:StopTimeUpdate .
+
+iudx:fareForAdult  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The fare for an adult in the journey corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "fareForAdult" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:WaterDistributionNetwork
+        rdf:type          owl:Class ;
+        rdfs:comment      "A Data Model for water supply network in a city." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WaterDistributionNetwork" ;
+        rdfs:subClassOf   iudx:Civic .
+
+iudx:agency_name  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "The agency_name field contains the full name of the transit agency. SameAs: 'agency_name' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_name" ;
+        skos:exactMatch      GTFS:agency_name ;
+        iudx:domainIncludes  iudx:BikeDockingStation , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:last_stop_arrival_time
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "Specifies the arrival time at the previous stop for a specific trip on a route. Times must be eight digits in HH:MM:SS format (H:MM:SS is also accepted, if the hour begins with 0). \nNote: Trips that span multiple dates will have stop times greater than 24:00:00. For example, if a trip begins at 10:30:00 p.m. and ends at 2:15:00 a.m. on the following day, the stop times would be 22:30:00 and 26:15:00. Entering those stop times as 22:30:00 and 02:15:00 would not produce the desired results. This is SameAs: absolute 'time'(StopTimeEvent) in the 'arrival' field of the stop_time_update (StopTimeUpdate) message of the GTFS Realtime message-TripUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-tripupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "last_stop_arrival_time" ;
+        skos:exactMatch      GTFS:arrival_time ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:serviceCompany  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Service agency or company corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "serviceCompany" ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:versionName  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Version name corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "versionName" ;
+        iudx:domainIncludes  iudx:Version ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:totalSlotNumber  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The total number of bike racks or docking slots in bike docking station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalSlotNumber" ;
+        skos:exactMatch      Fiware:totalSlotNumber ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:tags  rdf:type          iudx:TextProperty ;
+        rdfs:comment         "Comma separated discovery tags associated with an IUDXEntity (resource , resource Group)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tags" ;
+        iudx:domainIncludes  iudx:ResourceGroup , iudx:Resource ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:zoneID  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "Zone ID corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "zoneID" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:arrival_time  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "Specifies the arrival time at a specific stop for a specific trip on a route. Times must be eight digits in HH:MM:SS format (HH:MM:SS is also accepted, if the hour begins with 0). \nNote: Trips that span multiple dates will have stop times greater than 24:00:00. For example, if a trip begins at 10:30:00 p.m. and ends at 2:15:00 a.m. on the following day, the stop times would be 22:30:00 and 26:15:00. Entering those stop times as 22:30:00 and 02:15:00 would not produce the desired results. SameAs: 'arrival_time' field from GTFS Static Field definitions-stop_times.txt (https://developers.google.com/transit/gtfs/reference#stop_timestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "arrival_time" ;
+        skos:exactMatch      GTFS:arrival_time ;
+        iudx:domainIncludes  iudx:TransitManagement , iudx:TripDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:voltage  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Voltage value of the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "voltage" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:binColor  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Color of the bin. Could be used for indicating the type of waste. The color coding should follow the conventions applicable to the geographical area the bins are located." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binColor" ;
+        skos:exactMatch      Fiware:color ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:totalAbsent  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Number of employees failed to report to work" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "totalAbsent" ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:pH  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Acidity level or basicity level obsevered in the water." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "pH" ;
+        skos:exactMatch      Fiware:WaterQualityObserved.pH ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt , iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:TimeSeriesAggregation .
+
+iudx:sameAs  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "URL reference to another thing/entity that identifies the given thing/entity. This may be used to provide references to another data models where a property is described or say a reference to Wiki pages for a given thing etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "sameAs" ;
+        skos:exactMatch      schema:sameAs ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:treatmentPlantName
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Name of the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "treatmentPlantName" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:resourceServerFileAccessURL
+        rdf:type             iudx:Relationship ;
+        rdfs:comment         "Resource Server URL for file access" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceServerFileAccessURL" ;
+        iudx:domainIncludes  iudx:ResourceServer ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:airTemperatureForecast
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Forecasted value of air temperature over a certain duration in future." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "airTemperatureForecast" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:route_url  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Contains the URL of a web page about that particular route and is different from the agency_url. SameAs: 'route_url' field from GTFS Static Field definitions-routes.txt (https://developers.google.com/transit/gtfs/reference#routestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "route_url" ;
+        skos:exactMatch      GTFS:route_url ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:equipmentID  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Unique ID of the equipment corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentID" ;
+        iudx:domainIncludes  iudx:TrafficViolations , iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:geometry  rdf:type      iudx:GeoProperty ;
+        rdfs:comment         "Geometry property in a GeoJSON object" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "geometry" ;
+        iudx:domainIncludes  iudx:Place , iudx:Feature ;
+        iudx:rangeIncludes   iudx:GeoJSONGeometry .
+
+iudx:binLoggedTime  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "Time when the bin's level was last logged." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binLoggedTime" ;
+        iudx:domainIncludes  iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:startDateTime  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "Reported start time corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "startDateTime" ;
+        iudx:domainIncludes  iudx:Camera , iudx:Version ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:DateTime .
+
+iudx:comments  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "User comments corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "comments" ;
+        iudx:domainIncludes  iudx:IssueReporting , iudx:Version , iudx:Orientation , iudx:SafetiPin ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:StructuredProperty
+        rdf:type          owl:Class ;
+        rdfs:comment      "Describes the class of all properties in IUDX that have a complex JSON structures and cannot be described using simple strings and native data types." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StructuredProperty" ;
+        rdfs:subClassOf   iudx:Property .
+
+iudx:geoJSON  rdf:type       iudx:GeoProperty ;
+        rdfs:comment         "Geo-coordinates of a place specified in GeoJSON format." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "geoJSON" ;
+        iudx:domainIncludes  iudx:Place ;
+        iudx:rangeIncludes   iudx:GeoJSONGeometry .
+
+iudx:relativeHumidity
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed instantaneous relative humidity (water vapour in air)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "relativeHumidity" ;
+        skos:exactMatch      Fiware:relativeHumidity ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:mediaURL  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "URL providing further information of any image(s) or media of the complaint or place." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "mediaURL" ;
+        skos:exactMatch      open311:media_url ;
+        iudx:domainIncludes  iudx:TrafficViolations , iudx:Camera , iudx:BikeDockingStation , iudx:SafetiPin , iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:TrafficViolations
+        rdf:type          owl:Class ;
+        rdfs:comment      "A Data Model for Traffic Violations registered and E-Challans generated in Cities." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TrafficViolations" ;
+        rdfs:subClassOf   iudx:UrbanMobility .
+
+iudx:cod  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Chemical Oxygen Demand concentration measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cod" ;
+        skos:exactMatch      Fiware:cod ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:wardName  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Ward name corresponding to this observation." , "Ward name of the entity corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "wardName" ;
+        iudx:domainIncludes  iudx:PointOfInterest , iudx:WmgmtVehicle , iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:TimeProperty  rdf:type  owl:Class ;
+        rdfs:comment      "Class of all Time properties in IUDX. The range of time property is a time/date objects in standard formats." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TimeProperty" ;
+        rdfs:subClassOf   iudx:rdf .
+
+iudx:outOfServiceSlotNumber
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "The number of bike racks or docking slots that are out of order and cannot be used to hire or park a bike in the bike docking station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "outOfServiceSlotNumber" ;
+        skos:exactMatch      Fiware:outOfServiceSlotNumber ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:stop_desc  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "This field contains a description of a stop. SameAs: 'stop_desc' field from GTFS Static Field definitions-stops.txt (https://developers.google.com/transit/gtfs/reference#stopstxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "stop_desc" ;
+        skos:exactMatch      GTFS:stop_desc ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:titleCode  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "The code assigned to the title corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "titleCode" ;
+        iudx:domainIncludes  iudx:TrafficViolations , iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:treatmentPlantID
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Unique identification number for the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "treatmentPlantID" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:redox  rdf:type         iudx:QuantitativeProperty ;
+        rdfs:comment         "Reduction potential or oxidation measured in waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "redox" ;
+        skos:exactMatch      Fiware:redox ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:dataDescriptorLabel
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Human readable label for an entity" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataDescriptorLabel" ;
+        iudx:domainIncludes  iudx:DataDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:TimeSeriesAggregation
+        rdf:type          owl:Class ;
+        rdfs:comment      "This object describes various types of aggregated data associated with a time-seried data. For example, average over a certain duration in past, minimum value over a duration in past etc." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TimeSeriesAggregation" ;
+        rdfs:subClassOf   iudx:Intangible .
+
+iudx:equipmentStopID  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Stop ID (BRTS) at which the equipment corresponding to this transaction is installed." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentStopID" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:resourceGroup  rdf:type  iudx:Relationship ;
+        rdfs:comment         "IRI pointing to the resourceGroup entity associated with the resource." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceGroup" ;
+        iudx:domainIncludes  iudx:Resource ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:agency_url  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "The agency_url field contains the URL of the transit agency. SameAs: 'agency_url' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_url" ;
+        skos:exactMatch      GTFS:agency_url ;
+        iudx:domainIncludes  iudx:BikeDockingStation , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:value  rdf:type         rdf:Property ;
+        rdfs:comment         "Value of the quantity being described in the ValueDescriptor object." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "value" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Boolean , iudx:Text , iudx:Number , iudx:StructuredValue , iudx:NumericArray .
+
+iudx:direction_id  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Indicates the direction of travel of the vehicle corresponding to this observation, can be referenced from the GTFS static feed trips.txt. SameAs: 'direction_id' field from GTFS Realtime message-TripDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "direction_id" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem , iudx:TripDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:department  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "The department which is associated with the service or the issue corresponding to this observation." , "Division or section of the organization corresponding to this observation. Eg. Health, Transport." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "department" ;
+        skos:exactMatch      schema:department ;
+        iudx:domainIncludes  iudx:EmployeeDetails , iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:itemModifiedAt  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "DateTime of modification of a catalogue item." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "itemModifiedAt" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:deviceModel  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "Describes the information of the device, sensor or system in consideration." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceModel" ;
+        iudx:domainIncludes  iudx:Device ;
+        iudx:rangeIncludes   iudx:ModelInfo .
+
+iudx:address  rdf:type       iudx:GeoProperty ;
+        rdfs:comment         "Physical address of a place." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "address" ;
+        skos:exactMatch      schema:address ;
+        iudx:domainIncludes  iudx:IssueReporting , iudx:Streetlight , iudx:WaterDistributionNetwork , iudx:Place , iudx:BikeDockingStation , iudx:PointOfInterest ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:authControlLevel
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Authorizataion Control Level for resouces associated with a given resource-group.  Individual authorization control level indicates that access control is available per resource, i.e., authorization can be granted/not-granted on a per resource basis for the resources. Group authorization control level indicates that the authorization is available on group level only, i.e., authorization will be granted/not-granted for all the resources associated with the given resource group. ENUM: [GROUP, INDIVIDUAL]. Default value is set to GROUP. This field is applicable only for non-open data, i.e., when the accessPolicy field is set to value other than OPEN." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "authControlLevel" ;
+        iudx:domainIncludes  iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:FeedEntity  rdf:type  owl:Class ;
+        rdfs:comment      "A definition (or update) of an entity in the transit feed. If the entity is not being deleted, exactly one of 'trip_update', 'vehicle' and 'alert' fields should be populated." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "FeedEntity" .
+
+iudx:treatmentPlantCode
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Unique code for the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "treatmentPlantCode" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:streamURL  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "URL providing video streaming information for the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "streamURL" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Text  rdf:type       <file:///C:/Users/engli/Desktop/Internship%202021/code/@id> , owl:Class ;
+        rdfs:comment      "Data type: Text for string values" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Text" ;
+        skos:exactMatch   schema:Text .
+
+iudx:PointOfInterest  rdf:type  owl:Class ;
+        rdfs:comment      "A Data Model for geographic description of a Point of Interest." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "PointOfInterest" ;
+        rdfs:subClassOf   iudx:Civic .
+
+iudx:standing_capacity
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Describes the passenger standing capacity of the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "standing_capacity" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:binFullnessThreshold
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "The fullness threshold level of the bin defined as the level (in terms of percentage) when the bin full alert or notification will be generated." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "binFullnessThreshold" ;
+        skos:exactMatch      Fiware:fullnessThreshold ;
+        iudx:domainIncludes  iudx:WasteBinModel , iudx:WmgmtBin ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:departure  rdf:type     iudx:StructuredProperty ;
+        rdfs:comment         "If schedule_relationship is empty or SCHEDULED, either arrival or departure must be provided within a StopTimeUpdate. SameAs: 'departure' field from GTFS Realtime message-StopTimeUpdate (https://developers.google.com/transit/gtfs-realtime/reference#message-stoptimeupdate)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "departure" ;
+        iudx:domainIncludes  iudx:StopTimeUpdate , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:StopTimeEvent .
+
+iudx:hasObject  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Value associated with RelationshipValue class. Contains IRI(s) that specify the relationship object(s)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "hasObject" ;
+        iudx:domainIncludes  iudx:RelationshipValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:passengerCount  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Number of passengers travelling in the public transit bus corresponding to this observation. This count is computed based on the realtime ticketing transactions in the public transit bus." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "passengerCount" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:resolution  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Resolution of a measurement. That is, the smallest change in a quantity being measured that causes a perceptible change in the corresponding observation under specified conditions." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resolution" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:trip_delay  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "This can be positive and negative in seconds and shows how much the vehicle deviates from the planned one. SameAs: 'delay' field from GTFS Realtime message-StopTimeEvent (https://developers.google.com/transit/gtfs-realtime/reference#message-stoptimeevent)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip_delay" ;
+        skos:exactMatch      GTFS:delay ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:zoneName  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Zone name corresponding to this observation." , "Zone name of the entity corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "zoneName" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc , iudx:PointOfInterest , iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:Orientation  rdf:type  owl:Class ;
+        rdfs:comment      "Properties of the camera corresponding to this observation that indiactes its orientation." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Orientation" .
+
+iudx:latitude  rdf:type      iudx:GeoProperty ;
+        rdfs:comment         "Latitude of a place. Specified in WGS 84 CRS (https://en.wikipedia.org/wiki/World_Geodetic_System)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "latitude" ;
+        skos:exactMatch      schema:latitude ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:Place , iudx:GeoCoordinates , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:Text , iudx:Number .
+
+iudx:deviceBatteryStatus
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Gives the Battery charging status of the reporting device(Connected, Disconnected)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceBatteryStatus" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:Device ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:GeoJSONGeometry  rdf:type  owl:Class ;
+        rdfs:comment      "Describes the GeoJSON object" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "GeoJSONGeometry" ;
+        rdfs:subClassOf   iudx:StructuredValue .
+
+iudx:cameraOrientation
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Orientation information for the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cameraOrientation" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:Orientation .
+
+iudx:cameraNum  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "Camera number corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cameraNum" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:TripDescriptor  rdf:type  owl:Class ;
+        rdfs:comment      "A descriptor that identifies a single instance of a GTFS trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TripDescriptor" .
+
+iudx:feederPillarNum  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Streetlight feeder pillar information associated with the streetlight corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "feederPillarNum" ;
+        iudx:domainIncludes  iudx:Streetlight ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:transactionType  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Type of the transaction corresponding to this observation. For Eg - Issue, ReIssue, Entry, Exit etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "transactionType" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:openDataFields  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "List of properties/fields/attributes contained in the data available from the resources associated with a given resource Group which are open, i.e., no authorization is required to access these fields for a given resource." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "openDataFields" ;
+        iudx:domainIncludes  iudx:DataFieldListValue ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:vehicle_id  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Unique ID assigned to the vehicle corresponding to this observation, used in internal system identification. SameAs: 'id' field from GTFS Realtime message-VehicleDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicledescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicle_id" ;
+        iudx:domainIncludes  iudx:VehicleDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:minValue  rdf:type      rdf:QuantitativeProperty ;
+        rdfs:comment         "The lower value of a quantity/property." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "minValue" ;
+        skos:exactMatch      schema:minValue ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Number .
+
+iudx:rcRecoveryAmount
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Amount collected towards Registration Certificate on monthly basis from the establishment per emplyoee." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "rcRecoveryAmount" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:ac_available  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Describes the presence of air conditioning option in the vehicle corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ac_available" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:airQualityIndex  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Overall Air Quality Index (AQI) for the observed air quality." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "airQualityIndex" ;
+        iudx:domainIncludes  iudx:EnvAQM , iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:inFlow  rdf:type        iudx:QuantitativeProperty ;
+        rdfs:comment         "In-flow amount into the treatment plant/reservoir corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "inFlow" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:FunctionDescription
+        rdf:type          owl:Class ;
+        rdfs:comment      "Description of a function associated in computation of a quanitative value." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "FunctionDescription" ;
+        rdfs:subClassOf   iudx:Intangible .
+
+iudx:airQualityIndexForecast
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Forecasted overall Air Quality Index (AQI) over a certain duration in future." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "airQualityIndexForecast" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:Intangible  rdf:type  owl:Class ;
+        rdfs:comment      "Class of all intangible things like Structured valued objects etc." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Intangible" ;
+        rdfs:subClassOf   iudx:Thing .
+
+iudx:unitText  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "Describes the unit of measurement. Useful if unitCode is not available." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "unitText" ;
+        skos:exactMatch      schema:unitText ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:departure_time  rdf:type  iudx:TimeProperty ;
+        rdfs:comment         "Specifies the departure time from a specific stop for a specific trip on a route. Times must be eight digits in HH:MM:SS format (HH:MM:SS is also accepted, if the hour begins with 0). \nNote: Trips that span multiple dates will have stop times greater than 24:00:00. For example, if a trip begins at 10:30:00 p.m. and ends at 2:15:00 a.m. on the following day, the stop times would be 22:30:00 and 26:15:00. Entering those stop times as 22:30:00 and 02:15:00 would not produce the desired results. SameAs: 'departure_time' field from GTFS Static Field definitions-stop_times.txt (https://developers.google.com/transit/gtfs/reference#stop_timestxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "departure_time" ;
+        skos:exactMatch      GTFS:departure_time ;
+        iudx:domainIncludes  iudx:TransitManagement , iudx:TripDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:employmentUnit  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unit and/or facility where the employee reports and/or in which the job is to be performed.\nENUM: [Sweeping, Drainage, Vehicle Driver, Vehicle Helper, Workshop, Door to Door, Supervisor, Office Work]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "employmentUnit" ;
+        skos:exactMatch      schema:employmentUnit ;
+        iudx:domainIncludes  iudx:EmployeeDetails ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:freeSlotNumber  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "The number of bike racks or docking slots available for returning and parking bikes in the bike docking station corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "freeSlotNumber" ;
+        skos:exactMatch      Fiware:freeSlotNumber ;
+        iudx:domainIncludes  iudx:BikeDockingStation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:vehicleRunningStatus
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Moving status of the vehicle, one of running, waiting, stopped." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleRunningStatus" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:actual_trip_end_time
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "This field specifies the time at which service or trip corresponding to this observation is scheduled to end." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "actual_trip_end_time" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:DateTime .
+
+iudx:numStreetlight  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Describes the total number of streetlights connected to the feeder panel corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "numStreetlight" ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:alertLevel  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Reference alert level threshold value set for the sensing station corresponding to this observation. An Alert signal is generated if the current level crosses the alert level threshold value." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "alertLevel" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:label  rdf:type         iudx:TextProperty ;
+        rdfs:comment         "Human readable label for an entity" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "label" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:ambientNoise  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of ambient noise levels. Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "ambientNoise" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:tankBreadth  rdf:type   iudx:QuantitativeProperty ;
+        rdfs:comment         "Breadth of the Cuboid shaped water storage tank." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankBreadth" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:deviceStatus  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Indicates the status of physical device or devices." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "deviceStatus" ;
+        iudx:domainIncludes  iudx:WiFiHostspot , iudx:EnvFlood , iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:do  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Dissolved oxygen measured in the waste-water treatment plant corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "do" ;
+        skos:exactMatch      Fiware:do ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:nickel  rdf:type        iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Nickel (Ni). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "nickel" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:timestamp  rdf:type     iudx:TimeProperty ;
+        rdfs:comment         "Last reported time of observation from the vehicle. SameAs: 'timestamp' field from GTFS Realtime message-Vehicleposition (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "timestamp" ;
+        skos:exactMatch      GTFS:timestamp ;
+        iudx:domainIncludes  iudx:VehiclePosition , iudx:TransitManagement , iudx:TripUpdate ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:DateTime .
+
+iudx:additionalInfoURL
+        rdf:type             iudx:Relationship ;
+        rdfs:comment         "URL from which additional information of the subject can be obtained" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "additionalInfoURL" ;
+        iudx:domainIncludes  iudx:PointOfInterest , iudx:Organization , iudx:AccessObjectInfoValue ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:shiftOfOperation
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Shift of operation of the public transit vehicle operated by the fare collection agency/ public transit agency or the employee corresponding to this observation. Indiacted as '1' when the vehicle operates in the first shift, '2' when the vehicle operates in the second shift and '3' when the vehilce operates in the third shift." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "shiftOfOperation" ;
+        iudx:domainIncludes  iudx:EmployeeDetails , iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:equipmentTypeCode
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Unique code indicating the type of equipment used in the transaction (used by fare collection agency).ENUM [1B, 42, 02, 08, 41]\n1B - POS, 42 - HTT, 02- Mobile, 08- Fare Gate, 41- Pole Validator" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "equipmentTypeCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Feature  rdf:type    owl:Class ;
+        rdfs:comment      "Describes the GeoJSON Feature" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Feature" ;
+        rdfs:subClassOf   iudx:GeoJSONGeometry ;
+        skos:exactMatch   geojson:Feature .
+
+iudx:tankShape  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "Physical shape of the water storage tank corresponding to this observation. ENUM: [Cylindrical, Conical, Cuboid, Spherical]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "tankShape" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:aggregationDuration
+        rdf:type             rdf:Property ;
+        rdfs:comment         "Specifies the interval duration for computing statistical aggregations. Default duration interval unit is in Hours. Other units can be specified using ValueDescriptor Type." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "aggregationDuration" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:waterTemperature
+        rdf:type             iudx:QuantitativeProperty ;
+        rdfs:comment         "Water temperature in the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "waterTemperature" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:destinationStopID
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Unique ID of the bus stop at which the passenger deboards from the bus corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "destinationStopID" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:flowrate  rdf:type      iudx:QuantitativeProperty ;
+        rdfs:comment         "Volume of water flowing in/out of the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "flowrate" ;
+        skos:exactMatch      Fiware:WasteWaterJunction.flowrate ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:maxOverTime  rdf:type   rdf:QuantitativeProperty ;
+        rdfs:comment         "Describes the maximum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "maxOverTime" ;
+        iudx:domainIncludes  iudx:TimeSeriesAggregation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:year  rdf:type          iudx:TextProperty ;
+        rdfs:comment         "Year corresponding to this observation and is described in YYYY format, for eg. '2020'." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "year" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:ResourceGroup  rdf:type   owl:Class ;
+        rdfs:comment           "Describes the Resource Group entity in the IUDX catalogue." ;
+        rdfs:isDefinedBy       iudx: ;
+        rdfs:label             "ResourceGroup" ;
+        rdfs:subClassOf        iudx:IUDXEntity ;
+        iudx:requiredProperty  true .
+
+iudx:entryAreaCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Area code of the passenger boarding stop (used by the fare collection agency). For example, whether the stop is city-bus-service stop or brts stop or other service type stop etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "entryAreaCode" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:trip_direction  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Gives the direction in which the vehicle is travelling. SameAs: 'direction_id' field from GTFS Realtime message-TripDescriptor but is represented in the form of an ENUM[UP,DN] in place of [0,1] as seen in 'direction_id' (https://developers.google.com/transit/gtfs-realtime/reference#message-tripdescriptor)." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip_direction" ;
+        skos:exactMatch      GTFS:direction_id ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:no2  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Nitrogen Dioxide (NO2). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "no2" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:vehicleTypeCode  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "The code for vehicleType corresponding to this observation. For eg.- '1' - MOPED/SCOOTER, '2' - MOTOR CYCLE, '4' - PRIVATE MOTOR CAR/JEEP CAR, '21' - TEMPO, '26' - BUS, etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleTypeCode" ;
+        iudx:domainIncludes  iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:streamName  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Name of the video stream from the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "streamName" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:Place  rdf:type      owl:Class ;
+        rdfs:comment      "Describes fixed location for various entities. The places can be described using geo-Coordinates (points, polgons, bboxes etc.) , structured form of addresses or simple address strings." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Place" ;
+        rdfs:subClassOf   iudx:Thing ;
+        skos:closeMatch   schema:Place .
+
+iudx:WorkPlace  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to organization domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "WorkPlace" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:AuthServerInfoValue
+        rdf:type          owl:Class ;
+        rdfs:comment      "Describes information about the IUDX Authorization Server for a given resource." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "AuthServerInfoValue" ;
+        rdfs:subClassOf   iudx:StructuredValue .
+
+iudx:gustSpeed  rdf:type     iudx:QuantitativeProperty ;
+        rdfs:comment         "A sudden burst of high-speed wind over the observed average wind speed lasting  only for a few seconds." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "gustSpeed" ;
+        iudx:domainIncludes  iudx:EnvWeather ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:transactionTypeDescription
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Description of the transaction type. Explanation of various transanctionTypeID codes used in the data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "transactionTypeDescription" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:durationInHours  rdf:type  rdf:Property ;
+        rdfs:comment         "Specifies an interval duration in hours for computing statistical aggregations." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "durationInHours" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Number .
+
+iudx:StopTimeUpdate  rdf:type  owl:Class ;
+        rdfs:comment      "A descriptor of realtime update for arrival and/or departure events for a given stop on a trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "StopTimeUpdate" .
+
+iudx:phaseCurrent  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Current per phase. Ordered triple comprising of active power from three phases in the following order: [R Y B]" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "phaseCurrent" ;
+        iudx:domainIncludes  iudx:StreetLightFeeder ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:NumericArray .
+
+iudx:airQualityLevel  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Air Quality Category Indication. Qualitative level defined according to the local health agencies. For example, 'GOOD', 'MODERATE', 'POOR', 'UNHEALTHY', 'SEVERE', 'HAZARDOUS' etc." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "airQualityLevel" ;
+        skos:exactMatch      Fiware:airQualityLevel ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:wardID  rdf:type        iudx:TextProperty ;
+        rdfs:comment         "Ward ID corresponding to this observation." , "Ward ID of the entity corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "wardID" ;
+        iudx:domainIncludes  iudx:WmgmtBin , iudx:IssueReporting , iudx:WmgmtVehicle , iudx:MunicipalityDesc , iudx:PointOfInterest ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:name  rdf:type          iudx:TextProperty ;
+        rdfs:comment         "Name of the entity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "name" ;
+        skos:exactMatch      schema:name ;
+        iudx:domainIncludes  iudx:PointOfInterest , iudx:IUDXEntity , iudx:Place , iudx:Organization ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:itemStatus  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Status of a catalouge item. ENUM: [ACTIVE, DEPRECATED]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "itemStatus" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:TripUpdate  rdf:type  owl:Class ;
+        rdfs:comment      "A descriptor of realtime update on the progress of a vehicle along a trip." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TripUpdate" .
+
+iudx:agency_id  rdf:type     iudx:TextProperty ;
+        rdfs:comment         "ID that uniquely identifies a transit agency. A transit feed may represent data from more than one agency. The agency_id is dataset unique. This field is optional for transit feeds that only contain data for a single agency. SameAs: 'agency_id' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_id" ;
+        skos:exactMatch      GTFS:agency_id ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:vehicleAltitude  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Gives the current altitude of the vehicle using GPS" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicleAltitude" ;
+        iudx:domainIncludes  iudx:WmgmtVehicle ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:Class  rdf:type      owl:Class ;
+        rdfs:comment      "A class, also often called a 'Type'; equivalent to rdfs:Class." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Class" ;
+        rdfs:subClassOf   iudx:Intangible .
+
+iudx:current_status  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Describes the status of the vehicle w.r.t the stop corresponding to this observation ENUM: [INCOMING_AT, STOPPED_AT, IN_TRANSIT_TO]. SameAs:'current_status' field from GTFS Realtime message-VehiclePosition(https://developers.google.com/transit/gtfs-realtime/reference#message-vehicleposition)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "current_status" ;
+        iudx:domainIncludes  iudx:VehiclePosition , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:transactionDateTime
+        rdf:type             iudx:TimeProperty ;
+        rdfs:comment         "Date-time of the transaction corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "transactionDateTime" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:DateTime .
+
+iudx:authServerInfo  rdf:type  iudx:StructuredProperty ;
+        rdfs:comment         "Information about the Authorization Server used for a given resource." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "authServerInfo" ;
+        iudx:domainIncludes  iudx:ResourceGroup , iudx:Resource ;
+        iudx:rangeIncludes   iudx:AuthServerInfoValue .
+
+iudx:waterLevel  rdf:type    iudx:QuantitativeProperty ;
+        rdfs:comment         "Current water level in the water storage tank corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "waterLevel" ;
+        iudx:domainIncludes  iudx:WaterDistributionNetwork ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:accessObjectInfo
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Link to the access object. For example, an open API object." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "accessObjectInfo" ;
+        iudx:domainIncludes  iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:AccessObjectInfoValue .
+
+iudx:cameraType  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Type of the camera corresponding to this observation. ENUM: [FIXED, PTZ, DOME, DAY/NIGHT, C-MOUNT, BULLET]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cameraType" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:resourceServerStreamingAccessURL
+        rdf:type             iudx:Relationship ;
+        rdfs:comment         "Resource Server URL for data access based on Streaming" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceServerStreamingAccessURL" ;
+        iudx:domainIncludes  iudx:ResourceServer ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:EnvAQM  rdf:type     owl:Class ;
+        rdfs:comment      "Air Quality Monitoring (AQM) Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "EnvAQM" ;
+        rdfs:subClassOf   iudx:Environment .
+
+iudx:dataSchema  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Associated data schema. Specified as an URI (linking it to one of the known data type vocabulary, e.g., xsd)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataSchema" ;
+        iudx:domainIncludes  iudx:ValueDescriptor ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:pm10  rdf:type          iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant  Particulate Matter 10 (PM10). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "pm10" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:minOverTime  rdf:type   rdf:QuantitativeProperty ;
+        rdfs:comment         "Describes the minimum value of a time-series data over a specified duration in past. The duration is specified using another parameter in the value descriptor object related to this value" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "minOverTime" ;
+        iudx:domainIncludes  iudx:TimeSeriesAggregation ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:originStopID  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Unique ID of the bus stop at which the passenger boards into the bus corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "originStopID" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:versionInfo  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "Version information corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "versionInfo" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:Version .
+
+iudx:arsenic  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Arsenic (As). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "arsenic" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:dataSample  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Stringified sample object of the resource" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "dataSample" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:trip_details  rdf:type  iudx:StructuredProperty ;
+        rdfs:comment         "A descriptor of realtime update on the schedule of a vehicle along a trip." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "trip_details" ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:TripDetails .
+
+iudx:floodLevelStatus
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "Flood level status indication given by the flood sensing device. The status is marked Danger if the current level is higher than the danger level threshold value." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "floodLevelStatus" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:providerOrg  rdf:type   iudx:StructuredProperty ;
+        rdfs:comment         "Information about the Provider Organization." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "providerOrg" ;
+        iudx:domainIncludes  iudx:Provider ;
+        iudx:rangeIncludes   iudx:Organization .
+
+iudx:accessObject  rdf:type  iudx:Relationship ;
+        rdfs:comment         "Link to the access object. For example, an open API object." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "accessObject" ;
+        iudx:domainIncludes  iudx:AccessObjectInfoValue ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:license_plate  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Gives the License Plate number of the vehice. SameAs: 'license_plate' field from GTFS Realtime message-VehicleDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicledescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "license_plate" ;
+        iudx:domainIncludes  iudx:WmgmtBin , iudx:TransitManagement , iudx:WmgmtVehicle , iudx:VehicleDescriptor ;
+        iudx:rangeIncludes   iudx:Text , iudx:ValueDescriptor .
+
+iudx:resourceServerOrg
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Information about the organization operating the Resource Server." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceServerOrg" ;
+        iudx:domainIncludes  iudx:ResourceServer ;
+        iudx:rangeIncludes   iudx:Organization .
+
+iudx:functionParameters
+        rdf:type             iudx:TextProperty ;
+        rdfs:comment         "List of parameters associated with a function." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "functionParameters" ;
+        iudx:domainIncludes  iudx:FunctionDescription ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:o2  rdf:type            iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of Oxygen (O2). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "o2" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:rangeIncludes  rdf:type  rdf:Property ;
+        rdfs:comment         "Relates a property to a class that constitutes (one of) the expected type(s) for values of the property." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "rangeIncludes" ;
+        skos:exactMatch      schema:rangeIncludes ;
+        iudx:domainIncludes  rdf:Property ;
+        iudx:rangeIncludes   rdfs:Class .
+
+iudx:referenceLevel  rdf:type  iudx:QuantitativeProperty ;
+        rdfs:comment         "Reference setting used to compute the currentLevel." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "referenceLevel" ;
+        iudx:domainIncludes  iudx:EnvFlood ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:Point  rdf:type      owl:Class ;
+        rdfs:comment      "Describes the GeoJSON Point" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Point" ;
+        rdfs:subClassOf   iudx:GeoJSONGeometry ;
+        skos:exactMatch   geojson:Point .
+
+iudx:Civic  rdf:type      owl:Class ;
+        rdfs:comment      "Data models that pertain to the citizen issues/civic domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Civic" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:TransitManagement
+        rdf:type          owl:Class ;
+        rdfs:comment      "A public transit system Data Model." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "TransitManagement" ;
+        rdfs:subClassOf   iudx:UrbanMobility .
+
+iudx:vehicle_label  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "User visible label, i.e., something that must be shown to the passenger to help identify the correct vehicle. SameAs: 'label' field from GTFS Realtime message-VehicleDescriptor (https://developers.google.com/transit/gtfs-realtime/reference#message-vehicledescriptor)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "vehicle_label" ;
+        iudx:domainIncludes  iudx:FareCollectionSystem , iudx:VehicleDescriptor , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:resourceType  rdf:type  iudx:TextProperty ;
+        rdfs:comment         "Type of resource. ENUM: [MESSAGESTREAM, DATASET, FILE, GSLAYER, MEDIASTREAM]." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "resourceType" ;
+        iudx:domainIncludes  iudx:Resource , iudx:ResourceGroup ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:provider  rdf:type      iudx:Relationship ;
+        rdfs:comment         "IRI pointing to the provider entity associated with the given catalogue item" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "provider" ;
+        iudx:domainIncludes  iudx:ResourceGroup , iudx:Resource ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:Device  rdf:type     owl:Class ;
+        rdfs:comment      "Properties of the device that could have sensors or actuators which report measurements corresponding to this observation." ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "Device" .
+
+iudx:relatedEntity  rdf:type  iudx:Relationship ;
+        rdfs:comment         "ID of the associated entity." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "relatedEntity" ;
+        iudx:domainIncludes  iudx:IUDXEntity ;
+        iudx:rangeIncludes   iudx:RelationshipValue , iudx:Text .
+
+iudx:district  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "District name corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "district" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:cityName  rdf:type      iudx:TextProperty ;
+        rdfs:comment         "City name corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cityName" ;
+        iudx:domainIncludes  iudx:MunicipalityDesc ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:longitude  rdf:type     iudx:GeoProperty ;
+        rdfs:comment         "Longitude of a place. Specified in WGS 84 CRS (https://en.wikipedia.org/wiki/World_Geodetic_System)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "longitude" ;
+        skos:exactMatch      schema:longitude ;
+        iudx:domainIncludes  iudx:GeoCoordinates , iudx:WmgmtVehicle , iudx:TransitManagement , iudx:Place ;
+        iudx:rangeIncludes   iudx:Number , iudx:Text .
+
+iudx:description  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Description for an IUDX thing." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "description" ;
+        iudx:domainIncludes  iudx:Thing ;
+        iudx:rangeIncludes   iudx:Text .
+
+iudx:cameraName  rdf:type    iudx:TextProperty ;
+        rdfs:comment         "Name of the camera corresponding to this observation" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "cameraName" ;
+        iudx:domainIncludes  iudx:Camera ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:bearing  rdf:type       iudx:QuantitativeProperty ;
+        rdfs:comment         "Gives the vehicle GPS angle measured in a clockwise direction from the True North. SameAs 'bearing' field from GTFS Realtime message-Position(https://developers.google.com/transit/gtfs-realtime/reference#message-position)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "bearing" ;
+        skos:exactMatch      GTFS:bearing ;
+        iudx:domainIncludes  iudx:WmgmtVehicle , iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Number .
+
+iudx:UrbanMobility  rdf:type  owl:Class ;
+        rdfs:comment      "Data models that pertain to the urban mobility domain" ;
+        rdfs:isDefinedBy  iudx: ;
+        rdfs:label        "UrbanMobility" ;
+        rdfs:subClassOf   iudx:DataModel .
+
+iudx:so2  rdf:type           iudx:QuantitativeProperty ;
+        rdfs:comment         "Observed value of environmental pollutant Sulphur Dioxide (SO2). Value is an object containing attributes representing statistical aggregates derived from past data." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "so2" ;
+        iudx:domainIncludes  iudx:EnvAQM ;
+        iudx:rangeIncludes   iudx:TimeSeriesAggregation .
+
+iudx:municipalityInfo
+        rdf:type             iudx:StructuredProperty ;
+        rdfs:comment         "Municipality information corresponding to this observation." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "municipalityInfo" ;
+        iudx:domainIncludes  iudx:WasteWaterMgmt , iudx:Streetlight , iudx:EmployeeDetails , iudx:RevenueCollection ;
+        iudx:rangeIncludes   iudx:MunicipalityDesc .
+
+iudx:landmark  rdf:type      iudx:GeoProperty ;
+        rdfs:comment         "A physical distinguishing feature on land that marks a locality or a place." ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "landmark" ;
+        iudx:domainIncludes  iudx:IssueReporting ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
+
+iudx:agency_lang  rdf:type   iudx:TextProperty ;
+        rdfs:comment         "Contains a two-letter ISO 639-1 code for the primary language used by this transit agency. The language code is case-insensitive (both en and EN are accepted). SameAs: 'agency_lang' field from GTFS Static Field Definition - agency.txt (https://developers.google.com/transit/gtfs/reference#agencytxt)" ;
+        rdfs:isDefinedBy     iudx: ;
+        rdfs:label           "agency_lang" ;
+        skos:exactMatch      GTFS:agency_lang ;
+        iudx:domainIncludes  iudx:TransitManagement ;
+        iudx:rangeIncludes   iudx:ValueDescriptor , iudx:Text .
